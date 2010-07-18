@@ -1,0 +1,127 @@
+diff --git a/recfilter.c b/recfilter.c
+index 43674bf..a3048ca 100644
+--- a/recfilter.c
++++ b/recfilter.c
+@@ -57,7 +57,7 @@ main(int argc, char *argv[])
+ 	    return 1;
+ 	while (read(0, &uc, 1) == 1) {
+ 	  if ((uc >= 30 && uc <= 0x7e) ||
+-	      uc == 0x0a || uc == 0x0d || uc == 0x1b) {
++	      uc == 0x0a || uc == 0x0d || uc == 0x1b || 1) {
+ 	    char tmp[1024];
+ 	    sprintf(tmp, "%c\n", uc);
+ 	    udsendto(sfd, tmp);
+diff --git a/rectick.c b/rectick.c
+index 5d139eb..34fb267 100644
+--- a/rectick.c
++++ b/rectick.c
+@@ -74,23 +74,62 @@ int main(int argc, char *argv[])
+   return 0;
+ }
+ 
++int putbuf_esc(int i)
++{
++  if (i < 2) {
++    printf("<Esc>");
++    return i;
++  }
++  if (buf[i - 1] == '[' || buf[i - 1] == 'O') {
++    switch (buf[i - 2]) {
++      case 'A': printf("<UP>"); return i - 2;
++      case 'B': printf("<DOWN>"); return i - 2;
++      case 'C': printf("<RIGHT>"); return i - 2;
++      case 'D': printf("<LEFT>"); return i - 2;
++    }
++  }
++  printf("<Esc>");
++  return i;
++}
++
+ void putbuf()
+ {
+   int i;
+   for (i = buflen - 1; i >= 0; i --) {
+     if (buf[i] != 0)
+       switch (buf[i]) {
++      case 0x08:
++      case 0x7f:
++	printf("<BS>");
++	break;
++      case 0x09:
++	printf("<TAB>");
++	break;
+       case 0x0a:
+-	printf("[LF] ");
++	printf("<LF>");
++	break;
++      case 0x0c:
++	printf("\n");
++	{
++	  int j;
++	  for (j = 0; j < buflen; j++)
++	    buf[j] = 0;
++	}
+ 	break;
+       case 0x0d:
+-	printf("[CR] ");
++	printf("<CR>");
+ 	break;
+       case 0x1b:
+-	printf("[ESC] ");
++	i = putbuf_esc(i);
+ 	break;
+       default:
+-	printf("[%c] ", buf[i]);
++	if (buf[i] >= 0x01 && buf[i] <= 0x1f) {
++	  printf("<C-%c>", '@' + buf[i]);
++	} else if (buf[i] >= 0x20 && buf[i] <= 0x7e){
++	    printf("%c ", buf[i]);
++	} else {
++	    printf("[%02x]", (unsigned char) buf[i]);
++	}
+       }
+   }
+   printf("\n");
+@@ -100,8 +139,8 @@ void putbuf()
+ void rotbuf(char c)
+ {
+   int i;
+-  for (i = buflen - 1; i >= 0; i --) {
+-    buf[i + 1] = buf[i];
++  for (i = buflen - 1; i > 0; i --) {
++    buf[i] = buf[i - 1];
+   }
+   buf[0] = c;
+ }
+diff --git a/tick-screenrc.in b/tick-screenrc.in
+index 6fdf5e2..ccdb659 100644
+--- a/tick-screenrc.in
++++ b/tick-screenrc.in
+@@ -2,7 +2,7 @@
+ # $Id: tick-screenrc.in,v 1.3 2003/11/26 07:48:54 knok Exp $
+ caption always "%1`"
+ # specify like "backtick 1 0 0 @prefix@/bin/rectick -l 12 /tmp/tick1"
+-backtick 1 0 0 @prefix@/bin/rectick -l 12
++backtick 1 0 0 @prefix@/bin/rectick -l 20
+ #sleep 1
+ screen 0
+ # specify like "exec .!. @prefix@/bin/recfilter /tmp/tick1"
+@@ -10,3 +10,6 @@ exec .!. @prefix@/bin/recfilter
+ 
+ # new keybind
+ bind c eval screen "exec .!. @prefix@/bin/recfilter"
++
++defutf8 on
++vbell off
+diff --git a/udlib.c b/udlib.c
+index cbd7b7f..0dc899e 100644
+--- a/udlib.c
++++ b/udlib.c
+@@ -4,6 +4,7 @@
+ 
+ #include <sys/socket.h>
+ #include <sys/un.h>
++#include <stdlib.h>
+ #include <string.h>
+ 
+ #include "udlib.h"

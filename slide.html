@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>今更聞けないvimの話</title>
+<meta name="author" content="石田朗雄(&#64;iakio)" />
+<meta name="organization" content="Cycle of 5th / JPUG北海道支部" />
+<meta name="date" content="2010-06-26" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/small-black-custom/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/small-black-custom/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/small-black-custom/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/small-black-custom/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/small-black-custom/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>今更聞けないvimの話</h1>
+
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">今更聞けないvimの話</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>石田朗雄(&#64;iakio)</td></tr>
+<tr><th class="docinfo-name">Organization:</th>
+<td>Cycle of 5th / JPUG北海道支部</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>2010-06-26</td></tr>
+</tbody>
+</table>
+<!-- rst2s5.py - -no-compact-list - -theme-url=ui\small-black-custom slide.rst slide.html -->
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+
+</div>
+<div class="slide" id="id1">
+<h1>今日の話</h1>
+<ul>
+<li><p class="first">初歩的な話はありません</p>
+</li>
+<li><p class="first">.vimrcとかpluginについてはあまり詳しくないです</p>
+</li>
+<li><p class="first">普段vimを使っていて便利だなと思うこと、どういう風に考えながらvimを使っているかをピンポイントで説明します</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="id2">
+<h1>デモ環境について</h1>
+<ul>
+<li><p class="first">VirtualBox上のCentOSにPuTTY接続</p>
+</li>
+<li><p class="first">vim-enhanced-7.0.109-6.el5</p>
+</li>
+<li><p class="first">screen + rectick(少々改造)</p>
+</li>
+<li><p class="first">vimrc</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="vim-1">
+<h1>私とvim(1)</h1>
+<ul class="incremental">
+<li><p class="first">vi歴は10数年</p>
+</li>
+<li><p class="first">h/j/k/l, i, a, x, dd, yy, p, :wp</p>
+</li>
+<li><p class="first">何コレ？</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="vim-2">
+<h1>私とvim(2)</h1>
+<ul class="incremental">
+<li><p class="first">cw</p>
+</li>
+<li><p class="first">change word</p>
+</li>
+<li><p class="first">カーソルの下から単語の終わりまでを変更する</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="id3">
+<h1>実践的なコンボ(1)</h1>
+<dl class="docutils">
+<dt>/foo&lt;CR&gt;</dt>
+<dd>fooを検索(又は * でカーソルの下の単語を検索)</dd>
+<dt>cwbar&lt;Esc&gt;</dt>
+<dd>fooをbarに変更</dd>
+<dt>n</dt>
+<dd>前回の検索を繰り返し</dd>
+</dl>
+<dl class="docutils">
+<dt>.</dt>
+<dd>前回の変更を繰り返し</dd>
+</dl>
+</div>
+<div class="slide" id="id4">
+<h1>実践的なコンボ(2)</h1>
+<p class="center huge">n.n.n.n.n.n.n.n.n.n.</p>
+</div>
+<div class="slide" id="id5">
+<h1>如何にパターンにもちこむか</h1>
+<ol class="arabic">
+<li><p class="first">長い文字列の先頭をちょっとだけ変更したい</p>
+</li>
+<li><p class="first">長い文字列の最後をちょっとだけ変更したい</p>
+</li>
+</ol>
+<blockquote>
+cwだと文字列全体を入力しなおす必要がある</blockquote>
+</div>
+<div class="slide" id="operator-motion">
+<h1>operatorとmotion</h1>
+<div class="center huge line-block">
+<div class="line">c    w</div>
+<div class="line">{operator} {motion}</div>
+</div>
+<ul>
+<li><p class="first">motionは単独で使うとカーソル移動</p>
+</li>
+<li><p class="first">operatorと一緒に使うと、現在のカーソル位置から移動後の位置までに対して変更等を行う</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="operator">
+<h1>operatorいろいろ</h1>
+<dl class="docutils">
+<dt>cw</dt>
+<dd>change word</dd>
+<dt>dw</dt>
+<dd>delete word</dd>
+<dt>yw</dt>
+<dd>yank word</dd>
+<dt>gUw</dt>
+<dd>make upper case</dd>
+</dl>
+</div>
+<div class="slide" id="motion">
+<h1>motionいろいろ</h1>
+<dl class="docutils">
+<dt>cfx</dt>
+<dd>次のxまで変更</dd>
+<dt>ctx</dt>
+<dd>次のxの前まで変更</dd>
+<dt>c%</dt>
+<dd>対応する括弧まで変更</dd>
+<dt>ci&quot;</dt>
+<dd>&quot;..&quot;の中を変更(text objext)</dd>
+</dl>
+</div>
+<div class="slide" id="offset">
+<h1>検索とoffset</h1>
+<dl class="docutils">
+<dt>/abcd/e</dt>
+<dd>abcdを検索してカーソルを最後へ(dの位置)</dd>
+<dt>/abcd/s+1</dt>
+<dd>abcdを検索してカーソルを最初+1へ(bの位置へ)</dd>
+</dl>
+</div>
+<div class="slide" id="id6">
+<h1>まとめ</h1>
+<ul class="incremental">
+<li><p class="first">n.n.n.n.n.n.n. を活用しよう</p>
+</li>
+<li><p class="first">motionを極めよう :help {motion}</p>
+</li>
+<li><p class="first">llllllするくらいならせめてwwwwww</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="id7">
+<h1>ご静聴ありがとうございました</h1>
+</div>
+</div>
+</body>
+</html>
